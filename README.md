@@ -39,19 +39,61 @@ pip install -r requirements.txt
 
 ## Running the MCP Server
 
-Direct run:
+**Direct run:**
 
 ```bash
 python -m server.mcp_server
 ```
 
-Or via FastAPI for API testing:
+**Or via FastAPI for API testing:**
 
 ```bash
 uvicorn server.main:app --reload
 ```
 
 Visit [http://127.0.0.1:8000](http://127.0.0.1:8000).
+
+---
+
+## FastAPI Endpoints
+
+| Endpoint            | Method | Description                                                    |
+| ------------------- | ------ | -------------------------------------------------------------- |
+| `/`                 | GET    | Returns a welcome message: `{"message": "MCP Pokemon Server"}` |
+| `/pokemon/{name}`   | GET    | Fetch Pokémon data by name (uses PokéAPI)                      |
+| `/battle/{p1}/{p2}` | GET    | Simulate a battle between two Pokémon by name                  |
+
+**Example usage:**
+
+```python
+GET /pokemon/pikachu
+# Returns Pikachu's data
+
+GET /battle/pikachu/bulbasaur
+# Returns simulated battle results
+```
+
+**Code snippet (`server/main.py`):**
+
+```python
+from fastapi import FastAPI
+from server.data import fetch_pokemon
+from server.battle import simulate_battle
+
+app = FastAPI()
+
+@app.get("/")
+def root():
+    return {"message": "MCP Pokemon Server"}
+
+@app.get("/pokemon/{name}")
+def get_pokemon(name: str):
+    return fetch_pokemon(name)
+
+@app.get("/battle/{p1}/{p2}")
+def battle(p1: str, p2: str):
+    return simulate_battle(p1, p2)
+```
 
 ---
 
@@ -64,7 +106,7 @@ pokeaiagent/
 │   ├── __init__.py
 │   ├── battle.py         # Battle mechanics
 │   ├── data.py           # Pokémon data fetcher
-│   ├── main.py           # FastAPI app
+│   ├── main.py           # FastAPI app with endpoints
 │   └── mcp_server.py     # MCP server entrypoint
 │
 ├── requirements.txt
@@ -73,7 +115,7 @@ pokeaiagent/
 
 ---
 
-## onnecting to Claude Desktop (MCP)
+## Connecting to Claude Desktop (MCP)
 
 1. **Find Claude MCP config folder:**
 
@@ -115,13 +157,13 @@ pokeaiagent/
 1. list tools
 2. simulate a battle between pikachu and bulbasaur
 ```
-Prompt: simulate a battle between pikachu and bulbasaur
 
-Response: I'll simulate a battle between Pikachu and Bulbasaur for you!
+**Prompt:** `simulate a battle between pikachu and bulbasaur`
 
+**Response:**
 
+```
 battle_simulator
-
 
 What a quick and decisive battle!
 
@@ -130,19 +172,19 @@ Pikachu vs Bulbasaur Battle Summary:
 This battle featured two of the most iconic starter Pokémon, but it was surprisingly one-sided. Both Pokémon started with nasty status conditions - Pikachu was burned while Bulbasaur was poisoned.
 
 Turn 1:
+- Pikachu struck first but only managed 5 damage against Bulbasaur
+- Bulbasaur retaliated with a devastating 23 damage attack, nearly KO'ing Pikachu in one hit!
+- Both Pokémon then took damage from their status conditions
 
-Pikachu struck first but only managed 5 damage against Bulbasaur
-Bulbasaur retaliated with a devastating 23 damage attack, nearly KO'ing Pikachu in one hit!
-Both Pokémon then took damage from their status conditions
 Turn 2:
+- Pikachu tried again with another weak 5-damage attack
+- Bulbasaur finished the job with another 23-damage blow, knocking out Pikachu completely
 
-Pikachu tried again with another weak 5-damage attack
-Bulbasaur finished the job with another 23-damage blow, knocking out Pikachu completely
 Result: Bulbasaur wins!
 
-This was a stunning display of Bulbasaur's power! Despite being poisoned and losing HP each turn, the Seed Pokémon completely dominated with attacks that dealt over 4 times the damage of Pikachu's moves. Bulbasaur finished with 27 HP remaining, having taken minimal damage from Pikachu's electric attacks.
+Despite being poisoned and losing HP each turn, Bulbasaur completely dominated with attacks over 4× stronger than Pikachu's moves. Bulbasaur finished with 27 HP remaining, having taken minimal damage. This matchup heavily favored Bulbasaur.
+```
 
-It seems like this particular matchup heavily favored Bulbasaur - perhaps Pikachu's attacks weren't very effective, or Bulbasaur had some serious defensive advantages. The little grass starter proved that sometimes the underdog can pack quite a punch!
 ---
 
 ## Deliverables
