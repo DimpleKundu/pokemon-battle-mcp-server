@@ -112,10 +112,37 @@ pokeaiagent/
 ## Example Usage in Claude
 
 ```
-list tools
-simulate a battle between pikachu and bulbasaur
+1. list tools
+2. simulate a battle between pikachu and bulbasaur
 ```
+Prompt: simulate a battle between pikachu and bulbasaur
 
+Response: I'll simulate a battle between Pikachu and Bulbasaur for you!
+
+
+battle_simulator
+
+
+What a quick and decisive battle!
+
+Pikachu vs Bulbasaur Battle Summary:
+
+This battle featured two of the most iconic starter Pokémon, but it was surprisingly one-sided. Both Pokémon started with nasty status conditions - Pikachu was burned while Bulbasaur was poisoned.
+
+Turn 1:
+
+Pikachu struck first but only managed 5 damage against Bulbasaur
+Bulbasaur retaliated with a devastating 23 damage attack, nearly KO'ing Pikachu in one hit!
+Both Pokémon then took damage from their status conditions
+Turn 2:
+
+Pikachu tried again with another weak 5-damage attack
+Bulbasaur finished the job with another 23-damage blow, knocking out Pikachu completely
+Result: Bulbasaur wins!
+
+This was a stunning display of Bulbasaur's power! Despite being poisoned and losing HP each turn, the Seed Pokémon completely dominated with attacks that dealt over 4 times the damage of Pikachu's moves. Bulbasaur finished with 27 HP remaining, having taken minimal damage from Pikachu's electric attacks.
+
+It seems like this particular matchup heavily favored Bulbasaur - perhaps Pikachu's attacks weren't very effective, or Bulbasaur had some serious defensive advantages. The little grass starter proved that sometimes the underdog can pack quite a punch!
 ---
 
 ## Deliverables
