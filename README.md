@@ -149,6 +149,24 @@ Example request body for `/battle`:
 
 ---
 
+## 🎯 Claude MCP Testing Cheatsheet
+
+Once connected to Claude, you can try these prompts:
+
+| Action                         | Prompt Example                                                 |
+| ------------------------------ | -------------------------------------------------------------- |
+| List all available tools       | `list tools`                                                   |
+| Get Pokémon details            | `get details for charizard`                                    |
+| Check type effectiveness       | `what is water type's effectiveness against fire?`             |
+| Simulate a battle              | `simulate a battle between pikachu and squirtle`               |
+| Show all moves for a Pokémon   | `list all moves of bulbasaur`                                  |
+| See evolution chain            | `show evolution chain for eevee`                               |
+| Apply status effects in battle | `battle between pikachu and bulbasaur, include status effects` |
+
+💡 **Tip:** The tools are exposed via MCP — Claude will handle calling them with the correct parameters after you give a natural-language prompt.
+
+---
+
 ## 📌 Notes
 
 * The MCP server fetches live data from PokéAPI — no local DB required.
@@ -156,3 +174,10 @@ Example request body for `/battle`:
 * MCP and FastAPI are independent — you can run either or both.
 
 ---
+
+## ✍️ Credits
+
+Made with ❤️ by **Dimple Kundu** — thanks to **Scopely** for inspiration and support.
+
+---
+
